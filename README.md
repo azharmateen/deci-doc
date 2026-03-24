@@ -1,5 +1,8 @@
 # deci-doc
 
+[![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-blue?logo=anthropic&logoColor=white)](https://claude.ai/code)
+
+
 **Create, track, and search Architecture Decision Records (ADRs) and RFCs in your repo.**
 
 Every architecture decision your team makes should be documented. deci-doc makes it frictionless: one command to create, search by content, track status lifecycle, link related decisions, and visualize the decision graph.
