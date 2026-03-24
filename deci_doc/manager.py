@@ -126,6 +126,9 @@ class DocumentManager:
             timeline=sections.get("Timeline", ""),
             authors=metadata.get("authors", []),
             tags=metadata.get("tags", []),
+            links=metadata.get("links", []),
+            supersedes=metadata.get("supersedes"),
+            superseded_by=metadata.get("superseded_by"),
         )
 
     def _parse_sections(self, content: str) -> dict[str, str]:

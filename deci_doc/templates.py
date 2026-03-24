@@ -156,4 +156,36 @@ def parse_frontmatter(content: str) -> dict:
             tags = line.replace("**Tags:**", "").strip()
             metadata["tags"] = [t.strip() for t in tags.split(",")]
 
+        elif line.startswith("**Related:**"):
+            related = line.replace("**Related:**", "").strip()
+            links = []
+            for part in related.split(","):
+                part = part.strip()
+                # Parse "ADR-0002" or "RFC-0002" format
+                for prefix in ("ADR-", "RFC-"):
+                    if part.startswith(prefix):
+                        try:
+                            links.append(int(part[len(prefix):]))
+                        except ValueError:
+                            pass
+            metadata["links"] = links
+
+        elif line.startswith("**Supersedes:**"):
+            val = line.replace("**Supersedes:**", "").strip()
+            for prefix in ("ADR-", "RFC-"):
+                if val.startswith(prefix):
+                    try:
+                        metadata["supersedes"] = int(val[len(prefix):])
+                    except ValueError:
+                        pass
+
+        elif line.startswith("**Superseded by:**"):
+            val = line.replace("**Superseded by:**", "").strip()
+            for prefix in ("ADR-", "RFC-"):
+                if val.startswith(prefix):
+                    try:
+                        metadata["superseded_by"] = int(val[len(prefix):])
+                    except ValueError:
+                        pass
+
     return metadata
